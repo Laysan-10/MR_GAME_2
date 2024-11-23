@@ -1,10 +1,10 @@
-﻿using System;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class CarController : MonoBehaviour
+public class CustomPrometeoCarController1 : MonoBehaviour
 {
 	//CAR SETUP
 
@@ -156,6 +156,31 @@ public class CarController : MonoBehaviour
 
 	public RayCast_For_Car _raycast;
 
+private int _thumpup;
+private int _thumpdown;
+private int _first;
+
+public void Thumpup()
+{
+	_thumpup = 1;
+	_thumpdown = 0;
+	_first = 0;
+	Debug.Log("Thumpup()");
+}
+public void Thumpdown()
+{
+	_thumpup = 0;
+	_thumpdown = 1;
+	_first = 0;
+	Debug.Log("Thumpdown()");
+}
+public void First()
+{
+	_thumpup = 0;
+	_thumpdown = 0;
+	_first = 1;
+	Debug.Log("First()");
+}
 
 	// Start is called before the first frame update
 	void Start()
@@ -312,17 +337,20 @@ public class CarController : MonoBehaviour
 		
 			//Управление машиной
 
-			//if(Input.GetKey(KeyCode.W)){
-			//	CancelInvoke("DecelerateCar");
-			//	deceleratingCar = false;
-			//	GoForward();
-			//}
-			//if(Input.GetKey(KeyCode.S)){
+			if(_thumpup == 1){
 				CancelInvoke("DecelerateCar");
-			//	deceleratingCar = false;
-			//	GoReverse();
-			//}
+				deceleratingCar = false;
+				GoForward();
+			}
+			
+			if(_thumpdown == 1){
+				CancelInvoke("DecelerateCar");
+				deceleratingCar = false;
+				GoReverse();
+			}
+			
 			Debug.Log(_raycast.angle);
+			
 			if (_raycast.angle < -20)
 			{                       //А
 				Debug.Log("TurnRight();");
@@ -341,9 +369,11 @@ public class CarController : MonoBehaviour
 			//if(Input.GetKeyUp(KeyCode.Space)){
 			//	RecoverTraction();
 			//}
-			//if((!Input.GetKey(KeyCode.S) && !Input.GetKey(KeyCode.W))){||другой жест на руке
-			//	ThrottleOff();
-			//}
+			
+			if(_first == 1)
+			{
+				ThrottleOff();
+			}
 			//if((!Input.GetKey(KeyCode.S) && !Input.GetKey(KeyCode.W)) && !Input.GetKey(KeyCode.Space) && !deceleratingCar){
 			//	InvokeRepeating("DecelerateCar", 0f, 0.1f);
 			//	deceleratingCar = true;
