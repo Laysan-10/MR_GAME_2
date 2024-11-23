@@ -11,6 +11,8 @@ public class Spawn_Object : MonoBehaviour
 	[SerializeField] private CarController car;
 	[SerializeField] private StaticHandGesture _thumpup;
 	[SerializeField] private StaticHandGesture _thumpdown;
+	[SerializeField] private StaticHandGesture _hand_to_stop_car;
+	
 
 	// Ссылка на Input Action 
 
@@ -42,6 +44,8 @@ public class Spawn_Object : MonoBehaviour
 		car._raycast = FindObjectOfType<RayCast_For_Car>();
 		_thumpdown.gesturePerformed.AddListener(car.GoReverse);
 		_thumpup.gesturePerformed.AddListener(car.GoForward);
+		_hand_to_stop_car.gesturePerformed.AddListener(car.ThrottleOff);
+		
 
 	}
 }

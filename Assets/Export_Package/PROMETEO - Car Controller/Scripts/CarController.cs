@@ -371,12 +371,12 @@ public class CarController : MonoBehaviour
 			//	GoReverse();
 			//}
 			Debug.Log(_raycast.angle);
-			if (_raycast.angle < 0)
+			if (_raycast.angle < -20)
 			{                       //А
 				Debug.Log("TurnRight();");
 				TurnRight();
 			}
-			if (_raycast.angle > 20f)
+			if (_raycast.angle > 30f)
 			{                       //D
 				Debug.Log("TurnLeft();");
 								TurnLeft();
@@ -389,14 +389,14 @@ public class CarController : MonoBehaviour
 			//if(Input.GetKeyUp(KeyCode.Space)){
 			//	RecoverTraction();
 			//}
-			//if((!Input.GetKey(KeyCode.S) && !Input.GetKey(KeyCode.W))){
+			//if((!Input.GetKey(KeyCode.S) && !Input.GetKey(KeyCode.W))){||другой жест на руке
 			//	ThrottleOff();
 			//}
 			//if((!Input.GetKey(KeyCode.S) && !Input.GetKey(KeyCode.W)) && !Input.GetKey(KeyCode.Space) && !deceleratingCar){
 			//	InvokeRepeating("DecelerateCar", 0f, 0.1f);
 			//	deceleratingCar = true;
 			//}
-			if (_raycast.angle >= 0  && _raycast.angle <= 20)
+			if (_raycast.angle >= -20  && _raycast.angle <= 30)
 			{
 				ResetSteeringAngle();
 			}
@@ -568,6 +568,7 @@ public class CarController : MonoBehaviour
 	// This method apply positive torque to the wheels in order to go forward.
 	public void GoForward()
 	{
+		Debug.Log("GoForward()");
 		deceleratingCar = false;
 		//If the forces aplied to the rigidbody in the 'x' asis are greater than
 		//3f, it means that the car is losing traction, then the car will start emitting particle systems.
@@ -624,6 +625,8 @@ public class CarController : MonoBehaviour
 	// This method apply negative torque to the wheels in order to go backwards.
 	public void GoReverse()
 	{
+		Debug.Log("GoReverse()");
+		
 		deceleratingCar = false;
 		//If the forces aplied to the rigidbody in the 'x' asis are greater than
 		//3f, it means that the car is losing traction, then the car will start emitting particle systems.
@@ -680,6 +683,7 @@ public class CarController : MonoBehaviour
 	//The following function set the motor torque to 0 (in case the user is not pressing either W or S).
 	public void ThrottleOff()
 	{
+		Debug.Log("ThrottleOff();");
 		frontLeftCollider.motorTorque = 0;
 		frontRightCollider.motorTorque = 0;
 		rearLeftCollider.motorTorque = 0;
