@@ -31,7 +31,7 @@ public class Spawn_Object : MonoBehaviour
 	{
 		var spawnPosition = xrRayInteractor.transform.position + xrRayInteractor.transform.forward * 0.5f; 
 		_panel.transform.position = spawnPosition;
-		_panel.active = true;
+		_panel.SetActive(true);
 	}
 	public void Car_Spawner(GameObject _car)
 	{
