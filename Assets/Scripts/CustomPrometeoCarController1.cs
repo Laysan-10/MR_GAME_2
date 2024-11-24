@@ -349,7 +349,7 @@ public void First()
 				GoReverse();
 			}
 			
-			Debug.Log(_raycast.angle);
+			// Debug.Log(_raycast.angle);
 			
 			if (_raycast.angle < -20)
 			{                       //А

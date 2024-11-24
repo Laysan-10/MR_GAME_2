@@ -318,11 +318,11 @@ public class CarController : MonoBehaviour
 			//	GoForward();
 			//}
 			//if(Input.GetKey(KeyCode.S)){
-				CancelInvoke("DecelerateCar");
+				// CancelInvoke("DecelerateCar");
 			//	deceleratingCar = false;
 			//	GoReverse();
 			//}
-			Debug.Log(_raycast.angle);
+			// Debug.Log(_raycast.angle);	
 			if (_raycast.angle < -20)
 			{                       //А
 				Debug.Log("TurnRight();");
